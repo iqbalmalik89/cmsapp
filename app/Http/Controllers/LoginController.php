@@ -1,5 +1,7 @@
 <?php namespace App\Http\Controllers;
 
+use App\Http\Requests;
+use Illuminate\Support\Facades\Input;
 use Response;
 use View;
 
@@ -31,10 +33,25 @@ class LoginController extends Controller {
 	 *
 	 * @return Response
 	 */
-	// public function login(LoginRequest $request)
-	// {
-	// 	return view('login');
-	// 	//return Response::make('Succesfully Logged In!');
-	// }
+	public function login()
+	{
+		//echo $request;
+		$email = Input::get('email');
+		$password = Input::get('password');
+		
+		//$query = \DB::table('admin')->insert(['username' => 'john@example.com', 'password' => md5('1234')]);
+		$query = \DB::table('admin')->where('username','=',$email)->where('password','=',$password);
+
+		$count = count($query);
+		//echo $query;
+		if($count >0)
+		{
+			return view('hello');
+		}
+		else
+		{
+			return view('login');
+		}
+	}
 
 }

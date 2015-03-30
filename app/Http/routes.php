@@ -22,8 +22,23 @@ Route::controllers([
 
 Route::get('hello' , 'HelloController@index');
 
-Route::post('login', 'Auth\AuthController@login');
+Route::post('login', 'LoginController@login');
 
 Route::get('login', function() {
   return view('login');
 });
+
+// Route::get('login', array('as' => 'login', 'before' => 'guest', function()
+// {
+// 	return View::make('login');
+// }));
+
+// Route::post('login', array('before' => 'guest|csrf', function()
+// {
+// 	if (Auth::attempt(array('username' => Input::get('email'), 'password' => Input::get('password'))))
+// 	{
+// 		return Redirect::route('hello');
+// 	}
+	
+// 	return View::make('login')->with('error', true);
+// }));

@@ -48,6 +48,7 @@
     @endforeach
 
     <form method="post">
+    <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <label>Email Address</label><input type="text" name="email_address" id= "email"><br>
         <label>Password</label><input type="password" name="password" id= "password"><br>
         <input type="button" onclick="login();" value="Sign In">

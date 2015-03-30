@@ -31,10 +31,10 @@ class LoginController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function login(LoginRequest $request)
-	{
-		return view('login');
-		//return Response::make('Succesfully Logged In!');
-	}
+	// public function login(LoginRequest $request)
+	// {
+	// 	return view('login');
+	// 	//return Response::make('Succesfully Logged In!');
+	// }
 
 }

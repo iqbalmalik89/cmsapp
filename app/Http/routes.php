@@ -22,7 +22,7 @@ Route::controllers([
 
 Route::get('hello' , 'HelloController@index');
 
-Route::post('login', 'LoginController@login');
+Route::post('login', 'Auth\AuthController@login');
 
 Route::get('login', function() {
   return view('login');

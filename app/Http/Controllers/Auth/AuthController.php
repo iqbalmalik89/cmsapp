@@ -4,7 +4,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\Registrar;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
-
+use Response;
+use View;
 class AuthController extends Controller {
 
 	/*
@@ -34,5 +35,20 @@ class AuthController extends Controller {
 
 		$this->middleware('guest', ['except' => 'getLogout']);
 	}
+
+	public function login(LoginRequest $request)
+{
+    $field = filter_var($request->input('login'), FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+    $request->merge([$field => $request->input('login')]);
+
+    if ($this->auth->attempt($request->only($field, 'password')))
+    {
+        return redirect('/');
+    }
+
+    return redirect('/login')->withErrors([
+        'error' => 'These credentials do not match our records.',
+    ]);
+}
 
 }
